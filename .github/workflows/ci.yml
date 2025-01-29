@@ -2,7 +2,7 @@ name: CI-reusable_workflow
 on: [workflow_call]
 jobs:
   CI_Steps:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted]
     steps:
       - name: code checkout
         uses: actions/checkout@v4

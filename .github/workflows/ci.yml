@@ -20,8 +20,8 @@ jobs:
             token: ${{ secrets.vault_token }}
             tlsSkipVerify: true
             secrets: |
-              common/data/common/  sonarqube_user | sonarqube_user ;
-              common/data/common/ sonarqube_password | sonarqube_password ;
+              common/data/common  sonarqube_user | sonarqube_user ;
+              common/data/common sonarqube_password | sonarqube_password ;
               
   
 

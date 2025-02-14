@@ -37,8 +37,10 @@ jobs:
       - run: echo npm run test:Integration
         name: Code Integration Tests
 
-      - run: /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.host.url=http://sonarqube-internal.shujadevops.shop:9000 -Dsonar.projectKey=${{ inputs.project_name }} -Dsonar.qualitygate.wait=true -Dsonar.login=${{ steps.vault-secrets.outputs.sonarqube_user }} -Dsonar.password=${{ steps.vault-secrets.outputs.sonarqube_password }}
+      - run:   /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.host.url=http://sonarqube-internal.shujadevops.shop:9000 -Dsonar.projectKey=${{ inputs.project_name }} -Dsonar.qualitygate.wait=true -Dsonar.login=${{ steps.vault-secrets.outputs.sonarqube_user }} -Dsonar.password=${{ steps.vault-secrets.outputs.sonarqube_password }}
         name: Code Review
+
+
 
       - run: echo OK
         name: Release Software

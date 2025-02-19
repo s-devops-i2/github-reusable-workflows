@@ -5,6 +5,9 @@ on:
       project_name:
         required: true
         type: string
+      npm_install:
+        required: true
+        type: boolean
 jobs:
   CI_Steps:
     runs-on: [self-hosted]

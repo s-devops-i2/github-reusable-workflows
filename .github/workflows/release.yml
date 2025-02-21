@@ -1,0 +1,29 @@
+name: Release-reusable_workflow
+on:
+  workflow_call:
+    inputs:
+      project_name:
+        required: true
+        type: string
+      npm_install:
+        required: true
+        type: boolean
+jobs:
+  CI_Steps:
+    runs-on: [self-hosted]
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v4
+
+
+      -  run: echo npm install
+         name: Install nodejs modules
+         if: ${{ inputs.npm_install }}
+
+
+      - run: echo Realese OK
+        name: Release Software
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+
+
+

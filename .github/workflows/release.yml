@@ -23,7 +23,8 @@ jobs:
 
       - run: echo Realese OK
         name: Release Software
-        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+
+#        if: ${{ startsWith(github.ref, 'refs/tags/') }}
 
 
 

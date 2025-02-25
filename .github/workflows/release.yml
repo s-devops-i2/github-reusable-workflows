@@ -20,8 +20,19 @@ jobs:
          name: Install nodejs modules
          if: ${{ inputs.npm_install }}
 
+      - name: Import vault token
+        id: vault-secrets
+        uses: hashicorp/vault-action@v2
+        with:
+          url: https://vault.shujadevops.shop:8200
+          token: ${{ secrets.vault_token }}
+          tlsSkipVerify: true
+          secrets: |
+            common/data/common  artifactory_user | artifactory_user ;
+            common/data/common artifactory_password | artifactory_password ;
 
-      - run: echo Realese OK
+      - run: env
+#      - run: curl -v --user ${{ steps.vault-secrets.outputs.artifactory_user }}:${{ steps.vault-secrets.outputs.artifactory_password }} --data-binary @1.0.0.zip -X PUT "http://artifactory-internal.shujadevops.shop:8081/artifactory/expense-backend/1.0.0.zip"
         name: Release Software
 
 #        if: ${{ startsWith(github.ref, 'refs/tags/') }}

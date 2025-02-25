@@ -31,9 +31,10 @@ jobs:
             common/data/common  artifactory_user | artifactory_user ;
             common/data/common artifactory_password | artifactory_password ;
 
+      - run: ls -l
       - run: env
 
-#      - run: curl -v --user ${{ steps.vault-secrets.outputs.artifactory_user }}:${{ steps.vault-secrets.outputs.artifactory_password }} --data-binary @1.0.0.zip -X PUT "http://artifactory-internal.shujadevops.shop:8081/artifactory/expense-backend/1.0.0.zip"
+#      - run: curl -v --user ${{ steps.vault-secrets.outputs.artifactory_user }}:${{ steps.vault-secrets.outputs.artifactory_password }} --data-binary @${GITHUB_REF}.zip -X PUT "http://artifactory-internal.shujadevops.shop:8081/artifactory/expense-backend/${GITHUB_REF}.zip"
         name: Release Software testing env variable
 
 #        if: ${{ startsWith(github.ref, 'refs/tags/') }}

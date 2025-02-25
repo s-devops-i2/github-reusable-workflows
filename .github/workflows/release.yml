@@ -5,6 +5,9 @@ on:
       project_name:
         required: true
         type: string
+      release_archive_files:
+        required: true
+        type: string
       npm_install:
         required: true
         type: boolean
@@ -31,11 +34,13 @@ jobs:
             common/data/common  artifactory_user | artifactory_user ;
             common/data/common artifactory_password | artifactory_password ;
 
+      - run: zip -r ${GITHUB_REF}.zip ${{ inputs.release_archive_files }}
+        name: prepare artifact
       - run: ls -l
       - run: env
 
 #      - run: curl -v --user ${{ steps.vault-secrets.outputs.artifactory_user }}:${{ steps.vault-secrets.outputs.artifactory_password }} --data-binary @${GITHUB_REF}.zip -X PUT "http://artifactory-internal.shujadevops.shop:8081/artifactory/expense-backend/${GITHUB_REF}.zip"
-        name: Release Software testing env variable
+        name: Release Software
 
 #        if: ${{ startsWith(github.ref, 'refs/tags/') }}
 

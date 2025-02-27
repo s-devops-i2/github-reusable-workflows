@@ -43,11 +43,15 @@ jobs:
       - run: echo ${GITHUB_REF_NAME} >VERSION
         name: Create Version File
 
+#      - name: Prepare Artifact
+#        uses: vimtor/action-zip@v1.2
+#        with:
+#          files: ${{ inputs.release_archive_file }}
+#          dest: artifact.zip
+
       - name: Prepare Artifact
-        uses: vimtor/action-zip@v1.2
-        with:
-          files: ${{ inputs.release_archive_file }}
-          dest: artifact.zip
+        run: zip -r artifact.zip ${{ inputs.release_archive_file }}
+
 
       - run: curl -f -v --user ${{ steps.vault-secrets.outputs.artifactory_user }}:${{ steps.vault-secrets.outputs.artifactory_password }} --data-binary @artifact.zip -X PUT "http://artifactory-internal.shujadevops.shop:8081/artifactory/${{ inputs.project_name }}/${GITHUB_REF_NAME}.zip"
         name: Upload Artifact

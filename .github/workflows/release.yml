@@ -66,7 +66,7 @@ jobs:
                         }
                       ],
                         "update_materials_before_scheduling": true
-                        }' | sed -e "s/app_version/${GITHUB_REF_NAME}/" | jp  >/tmp/1
+                        }' | sed -e "s/app_version/${GITHUB_REF_NAME}/" | jq  >/tmp/1
 
 
 #        if: ${{ startsWith(github.ref, 'refs/tags/') }}
